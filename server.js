@@ -182,16 +182,24 @@ apiRoutes.post('/savemoviereview', (req, res, next) => {
 	  rating: req.body.rating,
 	  name: decoded.username
     });
+	Movie.findOne({
+		title: req.body.title
+	}, (err, movie) => {
+		if (err) throw err;
 
-    newReview.save((err) => {
-        if (err) {
-
-            res.json({ error: err.message });
-            return next(err);
-        } else {
-            res.json({ message: 'Movie Review saved successfully' });
-        }
-    });
+		if (!movie) {
+			res.json({ success: false, message: 'insert movie review failed. Movie not found.' });
+		} else if (movie) {
+			newReview.save((err) => {
+				if (err) {
+					res.json({ error: err.message });
+					return next(err);
+				} else {
+					res.json({ message: 'Movie Review saved successfully' });
+				}
+			});
+		}
+	});
 });
 
 //delete movie
