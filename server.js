@@ -3,12 +3,14 @@ const express = require('express');
 const _ = require('lodash');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const async = require("async");
 
 const passwordHash = require('password-hash');
 const jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 const config = require('./config'); // get our config file
 const User   = require('./app/models/user'); // get our user mongoose model
-const Movie   = require('./app/models/movie'); // get our mongoose model
+const Movie   = require('./app/models/movie'); // get our movie mongoose model
+const Review  = require('./app/models/review'); // get our review mongoose model
 const morgan = require('morgan');
 const app = express();
 
@@ -169,6 +171,29 @@ apiRoutes.post('/savemovie', (req, res, next) => {
     });
 });
 
+//save movie review
+apiRoutes.post('/savemoviereview', (req, res, next) => {
+	const token = req.headers["x-access-token"];
+	const decoded = jwt.decode(token);
+    // create a sample movie
+    const newReview = new Review({ 
+      title: req.body.title, 
+      quote: req.body.quote,
+	  rating: req.body.rating,
+	  name: decoded.username
+    });
+
+    newReview.save((err) => {
+        if (err) {
+
+            res.json({ error: err.message });
+            return next(err);
+        } else {
+            res.json({ message: 'Movie Review saved successfully' });
+        }
+    });
+});
+
 //delete movie
 apiRoutes.delete('/deletemovie', (req, res, next) => {
 
@@ -190,16 +215,67 @@ apiRoutes.delete('/deletemovie', (req, res, next) => {
 //get movie
 apiRoutes.get('/getmovie', (req, res) => {
 
-    // find the movie
-    Movie.findOne({
+	let { review, title } = req.query;
+	if (review) {
+		async.parallel({
+			movie: (callback) => {
+				Movie.findOne({
+					title: req.query.title
+				}, (err, movie) => {
+					if (err) throw err;
+					
+					if (!movie) {
+						res.json({ success: false, message: 'Movie not found.' });
+					} else {
+						callback(null,movie);
+					}
+				});
+			},
+			reivew: (callback) => {
+				Review.find({
+					title: req.query.title
+				}, (err, review) => {
+					if (err) throw err;
+			
+					if (!review) {
+						res.json({ success: false, message: 'Movie Review not found.' });
+					} else {
+						callback(null,review);
+					}
+				});
+			}
+		}, (err, results) => {
+			res.json(results);
+		});
+	} else {
+		// find the movie
+		Movie.findOne({
+			title: req.query.title
+		}, (err, movie) => {
+			if (err) throw err;
+	
+			if (!movie) {
+				res.json({ success: false, message: 'Movie not found.' });
+			} else {
+				res.json(movie);
+			}
+		});
+	}
+});
+
+//get review for one movie -- testing 
+apiRoutes.get('/getMovieReview', (req, res) => {
+
+    // find the Review
+    Review.find({
 		title: req.query.title
-	}, (err, movie) => {
+	}, (err, review) => {
 		if (err) throw err;
 
-		if (!movie) {
-			res.json({ success: false, message: 'Movie not found.' });
+		if (!review) {
+			res.json({ success: false, message: 'Movie Review not found.' });
 		} else {
-			res.json(movie);
+			res.json(review);
 		}
 	});
 });
