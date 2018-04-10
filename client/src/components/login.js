@@ -20,10 +20,8 @@ class Login extends Component {
         console.log(111);
         // alert('wrong username or password');
         axios.post('/api/signin', {
-            params: {
-                username: "jie",
-                password: "123456"
-            }
+            username: "jie",
+            password: "123456"
           })
           .then(function (response) {
             console.log(response);
