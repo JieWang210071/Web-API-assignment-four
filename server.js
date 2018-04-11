@@ -12,12 +12,8 @@ const User   = require('./app/models/user'); // get our user mongoose model
 const Movie   = require('./app/models/movie'); // get our movie mongoose model
 const Review  = require('./app/models/review'); // get our review mongoose model
 const morgan = require('morgan');
-const path = require('path');
 const app = express();
 
-
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
 
 // const dotenv = require('dotenv');
 
@@ -318,12 +314,6 @@ apiRoutes.put('/updatemovie', (req, res) => {
 		}
 	});
 });
-
-
-app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname+'/client/build/index.html'));
-  });
-
 
 app.use('/api', apiRoutes);
 // =======================
