@@ -25,10 +25,12 @@
 							"raw": "{\n\t\"username\": \"jie\",\n\t\"name\": \"jie\",\n\t\"password\": \"123456\"\n}"
 						},
 						"url": {
-							"raw": "http://{{host}}/signup",
-							"protocol": "http",
+							"raw": "https://glacial-sands-86233.herokuapp.com/signup",
+							"protocol": "https",
 							"host": [
-								"{{host}}"
+								"glacial-sands-86233",
+								"herokuapp",
+								"com"
 							],
 							"path": [
 								"signup"
@@ -53,10 +55,10 @@
 							"raw": "{\n\t\"username\": \"jie\",\n\t\"name\": \"jie\",\n\t\"password\": \"123456\"\n}"
 						},
 						"url": {
-							"raw": "https://protected-garden-50506.herokuapp.com/signup",
+							"raw": "https://glacial-sands-86233.herokuapp.com/signup",
 							"protocol": "https",
 							"host": [
-								"protected-garden-50506",
+								"glacial-sands-86233",
 								"herokuapp",
 								"com"
 							],
@@ -83,10 +85,10 @@
 							"raw": "{\n\t\"username\": \"jie\",\n\t\"password\": \"123456\"\n}"
 						},
 						"url": {
-							"raw": "https://protected-garden-50506.herokuapp.com/api/signin",
+							"raw": "https://glacial-sands-86233.herokuapp.com/api/signin",
 							"protocol": "https",
 							"host": [
-								"protected-garden-50506",
+								"glacial-sands-86233",
 								"herokuapp",
 								"com"
 							],
@@ -111,10 +113,10 @@
 						],
 						"body": {},
 						"url": {
-							"raw": "https://protected-garden-50506.herokuapp.com/api/users",
+							"raw": "https://glacial-sands-86233.herokuapp.com/api/users",
 							"protocol": "https",
 							"host": [
-								"protected-garden-50506",
+								"glacial-sands-86233",
 								"herokuapp",
 								"com"
 							],
@@ -487,7 +489,7 @@
 						"header": [
 							{
 								"key": "x-access-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiamllIiwidXNlcm5hbWUiOiJqaWUiLCJpYXQiOjE1MjI1MzcyNzMsImV4cCI6MTUyMjYyMzY3M30.haNieyYm-UNd-rHU_68QUASoRamKqLPfDoZUiWaO90g"
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiamllIiwidXNlcm5hbWUiOiJqaWUiLCJpYXQiOjE1MjM0MDUyMzQsImV4cCI6MTUyMzQ5MTYzNH0.QrqcL1Cq3L0jXXCXmiuFFm-aZ8vm9zYZYfDoxtKETt0"
 							}
 						],
 						"body": {},
@@ -527,7 +529,7 @@
 						"header": [
 							{
 								"key": "x-access-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiamllIiwidXNlcm5hbWUiOiJqaWUiLCJpYXQiOjE1MjI1MzcyNzMsImV4cCI6MTUyMjYyMzY3M30.haNieyYm-UNd-rHU_68QUASoRamKqLPfDoZUiWaO90g"
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiamllIiwidXNlcm5hbWUiOiJqaWUiLCJpYXQiOjE1MjM0MDUyMzQsImV4cCI6MTUyMzQ5MTYzNH0.QrqcL1Cq3L0jXXCXmiuFFm-aZ8vm9zYZYfDoxtKETt0"
 							}
 						],
 						"body": {},
@@ -567,7 +569,7 @@
 						"header": [
 							{
 								"key": "x-access-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiamllIiwidXNlcm5hbWUiOiJqaWUiLCJpYXQiOjE1MjI1MzcyNzMsImV4cCI6MTUyMjYyMzY3M30.haNieyYm-UNd-rHU_68QUASoRamKqLPfDoZUiWaO90g"
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiamllIiwidXNlcm5hbWUiOiJqaWUiLCJpYXQiOjE1MjM0MDUyMzQsImV4cCI6MTUyMzQ5MTYzNH0.QrqcL1Cq3L0jXXCXmiuFFm-aZ8vm9zYZYfDoxtKETt0"
 							}
 						],
 						"body": {},
@@ -622,7 +624,7 @@
 	],
 	"variable": [
 		{
-			"id": "ded97d8a-3a90-41c1-a68a-354ce82a401a",
+			"id": "f833bfce-6f00-4782-b991-1e76fae3b513",
 			"key": "jwt",
 			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiamllIiwidXNlcm5hbWUiOiJqaWUiLCJpYXQiOjE1MjA5MTg1MzMsImV4cCI6MTUyMTAwNDkzM30.RrVUv8t6U93fTE1vjO9d8yOmdThkThcwdzeNtvg9yqk",
 			"type": "text"
