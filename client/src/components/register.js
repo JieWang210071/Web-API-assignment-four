@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
-import { submitLogin } from '../actions/authActions';
+import React, { Component} from 'react';
+import { submitRegister } from '../actions/authActions';
 import { connect } from 'react-redux';
 import { Col, Form, FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
 
-class Login extends Component {
+class Register extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor(){
+        super();
+
         this.updateDetails = this.updateDetails.bind(this);
-        this.login = this.login.bind(this);
-
+        this.register = this.register.bind(this);
         this.state = {
             details:{
+                name: '',
                 username: '',
                 password: ''
             }
@@ -27,20 +28,29 @@ class Login extends Component {
         });
     }
 
-    login() {
+    register(){
         const {dispatch} = this.props;
-        dispatch(submitLogin(this.state.details));
+        dispatch(submitRegister(this.state.details));
     }
 
     render(){
         return (
             <Form horizontal>
+                <FormGroup controlId="name">
+                    <Col componentClass={ControlLabel} sm={2}>
+                        Email
+                    </Col>
+                    <Col sm={10}>
+                        <FormControl onChange={this.updateDetails} value={this.state.details.name} type="text" placeholder="Name" />
+                    </Col>
+                </FormGroup>
+
                 <FormGroup controlId="username">
                     <Col componentClass={ControlLabel} sm={2}>
                         Email
                     </Col>
                     <Col sm={10}>
-                        <FormControl onChange={this.updateDetails} value={this.state.details.username} type="email" placeholder="Email" />
+                        <FormControl onChange={this.updateDetails} value={this.state.details.username} type="text" placeholder="Username" />
                     </Col>
                 </FormGroup>
 
@@ -55,7 +65,7 @@ class Login extends Component {
 
                 <FormGroup>
                     <Col smOffset={2} sm={10}>
-                        <Button onClick={this.login}>Sign in</Button>
+                        <Button onClick={this.register}>Register</Button>
                     </Col>
                 </FormGroup>
             </Form>
@@ -68,4 +78,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps)(Register);

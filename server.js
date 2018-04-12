@@ -40,7 +40,7 @@ app.use(morgan('dev'));
 // basic route
 
 app.post('/signup', (req, res) => {
-
+	console.log('asd',req)
     // create a sample user
     const newUser = new User({ 
       username: req.body.username, 
