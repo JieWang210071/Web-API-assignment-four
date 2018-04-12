@@ -17,7 +17,7 @@ function logout(){
 export function submitLogin(data){
     const env = runtimeEnv();
     return dispatch => {
-        return fetch(`${env.REACT_APP_API_URL}/signin`, {
+        return fetch('api/signin', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
