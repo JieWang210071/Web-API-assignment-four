@@ -44,7 +44,7 @@ export function submitLogin(data){
 export function submitRegister(data){
     const env = runtimeEnv();
     return dispatch => {
-        return fetch(`${env.REACT_APP_API_URL}/signup`, {
+        return fetch('/signup', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
