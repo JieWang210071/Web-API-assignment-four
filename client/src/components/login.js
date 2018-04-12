@@ -5,6 +5,9 @@ import './style.css';
 class Login extends Component {
     constructor(){
         super();
+        this.state = {
+            show: false
+        };
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -18,6 +21,7 @@ class Login extends Component {
 
     handleOnClick(){
         console.log(111);
+        this.setState({show:!this.state.show});
         // alert('wrong username or password');
         axios.post('/api/signin', {
             username: "jie",
@@ -36,6 +40,7 @@ class Login extends Component {
     render() {
         return (
             <div className="center">
+                {this.state.show?<div>你瞅啥！</div>:null}
                 <div className="card">
                     <form>
                         <input
