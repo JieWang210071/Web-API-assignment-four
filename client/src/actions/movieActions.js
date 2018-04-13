@@ -31,14 +31,14 @@ export function setMovie(movie) {
 export function fetchMovies(){
     const env = runtimeEnv();
     return dispatch => {
-        return fetch(`${env.REACT_APP_API_URL}/movies?reviews=true`, {
+        return fetch('api/getallmovie?reviews=true', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('token')
+                'x-access-token': localStorage.getItem('token')
             },
-            mode: 'no-cors'})
+            mode: 'cors'})
             .then( (response) => {
                 if (!response.ok) {
                     throw Error(response.statusText);
@@ -62,7 +62,7 @@ export function fetchMovie(movieId){
                 'Content-Type': 'application/json',
                 'Authorization': localStorage.getItem('token')
             },
-            mode: 'no-cors'})
+            mode: 'cors'})
             .then( (response) => {
                 if (!response.ok) {
                     throw Error(response.statusText);

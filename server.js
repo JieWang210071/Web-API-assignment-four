@@ -40,7 +40,6 @@ app.use(morgan('dev'));
 // basic route
 
 app.post('/signup', (req, res) => {
-	console.log('asd',req)
     // create a sample user
     const newUser = new User({ 
       username: req.body.username, 
@@ -69,6 +68,7 @@ app.post('/signup', (req, res) => {
 });
 
 const apiRoutes = express.Router(); 
+app.use('/api', apiRoutes);
 
 apiRoutes.post('/signin', (req, res) => {
 
@@ -325,7 +325,6 @@ app.get('*', (req, res) => {
   });
 
 
-app.use('/api', apiRoutes);
 // =======================
 // start the server ======
 // =======================

@@ -24,7 +24,7 @@ export function submitLogin(data){
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data),
-            mode: 'no-cors'})
+            mode: 'cors'})
             .then( (response) => {
                 if (!response.ok) {
                     throw Error(response.statusText);
