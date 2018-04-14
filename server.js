@@ -295,10 +295,31 @@ apiRoutes.get('/getMovieReview', (req, res) => {
 //get all movie
 apiRoutes.get('/getallmovie', (req, res) => {
 
-    // find the movie
-    Movie.find({}, (err, movies) => {
-		if (err) throw err;
-		res.json(movies);
+	async.parallel({
+		movie: (callback) => {
+			 // find all movies
+			 Movie.find({}, (err, movies) => {
+				if (err) throw err;
+				callback(null, JSON.parse(JSON.stringify(movies)));
+			});
+		},
+		review: (callback) => {
+			Review.find({}, (err, review) => {
+				if (err) throw err;
+				callback(null, JSON.parse(JSON.stringify(review)));
+			});
+		}
+	}, (err, results) => {
+		let moveList;
+		moveList = results.movie.map((movie) => {
+			movie.review = results.review.filter(review => review.title === movie.title)
+			return movie;
+		})
+		moveList.sort(function(a, b) { 
+			return b.avgRating - a.avgRating;
+		})
+		
+		res.json(moveList);
 	});
 });
 

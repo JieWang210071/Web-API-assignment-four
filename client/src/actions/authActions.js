@@ -32,10 +32,13 @@ export function submitLogin(data){
                 return response.json();
             })
             .then( (res) => {
-                localStorage.setItem('username', data.username);
-                localStorage.setItem('token', res.token);
+                if (res.success) {
+                    localStorage.setItem('username', data.username);
+                    localStorage.setItem('token', res.token);
 
-                dispatch(userLoggedIn(data.username));
+                    dispatch(userLoggedIn(data.username));
+                }
+                
             })
             .catch( (e) => console.log(e) );
     }
@@ -59,8 +62,9 @@ export function submitRegister(data){
                 return response.json();
             })
             .then( (res) => {
-
-                dispatch(submitLogin(data));
+                if (res.success) {
+                    dispatch(submitLogin(data));
+                }
             })
             .catch( (e) => console.log(e) );
     }
