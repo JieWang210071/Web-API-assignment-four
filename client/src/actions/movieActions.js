@@ -28,6 +28,33 @@ export function setMovie(movie) {
     }
 }
 
+export function submitReview(data){
+    return dispatch => {
+        return fetch('api/savemoviereview', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'x-access-token': localStorage.getItem('token')
+            },
+            body: JSON.stringify(data),
+            mode: 'cors'})
+            .then( (response) => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                return response.json();
+            })
+            .then( (res) => {
+                // dispatch(fetchMovie(data.title));
+                // if (res.success) {
+                //     dispatch(submitLogin(data));
+                // }
+            })
+            .catch( (e) => console.log(e) );
+    }
+}
+
 export function fetchMovies(){
     const env = runtimeEnv();
     return dispatch => {
@@ -62,7 +89,7 @@ export function fetchMovie(movieTitle){
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('token')
+                'x-access-token': localStorage.getItem('token')
             },
             mode: 'cors'})
             .then( (response) => {
