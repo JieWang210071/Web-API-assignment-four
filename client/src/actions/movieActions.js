@@ -46,7 +46,7 @@ export function fetchMovies(){
                 return response.json();
             })
             .then( (res) => {
-                if (res.success) {
+                if (res.success === undefined) {
                     dispatch(moviesFetched(res));
                 }
             })
